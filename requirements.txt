@@ -1,0 +1,26 @@
+# Core
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+redis>=5.0.0
+async-timeout>=4.0.3
+pydantic>=2.5.0
+httpx>=0.25.0
+python-dotenv>=1.0.0
+
+# ML inference (H100, bfloat16, no quantization)
+# NOTE: torch is installed separately in Dockerfile with --index-url cu124
+transformers>=4.40.0
+accelerate>=0.28.0
+sentencepiece>=0.1.99
+protobuf>=3.20.3
+
+# Image processing
+pillow>=10.1.0
+numpy>=1.24.3,<2.0
+opencv-python-headless>=4.8.1.78
+
+# Text embeddings (BGE backbone for classifier)
+sentence-transformers>=2.6.0
+
+# Model download
+huggingface_hub>=0.20.0
