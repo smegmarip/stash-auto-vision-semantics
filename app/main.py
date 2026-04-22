@@ -257,7 +257,10 @@ async def _fetch_scene_from_stash(scene_id: str) -> Dict[str, Any]:
     async with httpx.AsyncClient(timeout=15.0) as client:
         resp = await client.post(graphql_url, json={"query": query, "variables": {"id": scene_id}}, headers=headers)
         resp.raise_for_status()
-        body = resp.json()
+        # Stash may return file paths with non-UTF-8 bytes (e.g., Latin-1
+        # accented characters). Decode tolerantly to avoid crashing on them.
+        import json as _json
+        body = _json.loads(resp.content.decode("utf-8", errors="replace"))
 
     if "errors" in body and body["errors"]:
         raise RuntimeError(f"Stash GraphQL errors: {body['errors']}")
