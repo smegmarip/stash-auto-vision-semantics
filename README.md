@@ -137,6 +137,7 @@ All configuration is via environment variables. See `.env.example` for the full 
 | `REDIS_URL`                | Redis connection URL (embedded in container)                | `redis://localhost:6379/0`       |
 | `CACHE_TTL`                | Cache TTL in seconds (1 year keeps results across restarts) | `31536000`                       |
 | `LOG_LEVEL`                | Logging level: `DEBUG`, `INFO`, `WARNING`, `ERROR`          | `INFO`                           |
+| `SSH_PASSWORD`             | Root password for SSH access (if unset, pubkey only)        | --                               |
 
 ## Performance
 

@@ -4,6 +4,7 @@ FROM nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
 RUN apt-get update && apt-get install -y \
     python3.11 python3.11-venv python3-pip \
     redis-server redis-tools \
+    openssh-server \
     libgl1-mesa-glx libglib2.0-0 \
     curl \
     && rm -rf /var/lib/apt/lists/*
@@ -29,6 +30,6 @@ RUN chmod +x entrypoint.sh
 # Persistent volumes
 VOLUME ["/root/.cache/huggingface", "/data/redis", "/tmp/sprites"]
 
-EXPOSE 5004
+EXPOSE 5004 22
 
 ENTRYPOINT ["./entrypoint.sh"]
